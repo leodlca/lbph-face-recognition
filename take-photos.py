@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import pandas as pd
+import os
 from datetime import datetime
 
 # UI
@@ -36,6 +37,9 @@ face_classifier = cv2.CascadeClassifier('classifiers/haarcascade_frontalface_alt
 camera = cv2.VideoCapture(0 if len(camera_id) == 0 else int(camera_id))
 
 LARGURA, ALTURA, photos_taken = 220, 220, 0
+
+if not os.path.exists('faces'):
+    os.makedirs('faces')
 
 while cv2.waitKey(1) != ord('q'):
     connected, img = camera.read()
